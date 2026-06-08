@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>滝本渉 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>滝本渉 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社マクアケ</a>
+  <a href="#k2">2. カイテク株式会社</a>
+  <a href="#k3">3. INTLOOP株式会社</a>
+  <a href="#k4">4. ビジネスコーチ株式会社</a>
+  <a href="#k5">5. SAAFホールディングス株式会社</a>
+  <a href="#k6">6. SHE株式会社</a>
+  <a href="#k7">7. 株式会社ブロードリーフ</a>
+  <a href="#k8">8. 株式会社メディアドゥ</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">IR</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">株式会社マクアケ</div>
+  <div class="co-url"><a href="https://www.makuake.co.jp/" target="_blank">https://www.makuake.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都目黒区青葉台3-1-12 青葉台イーストビル1F</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>社長リレーション</li><li>過去入社実績アリ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「生まれるべきものが生まれ、広がるべきものが広がり、残るべきものが残る世界の実現」をビジョンに掲げ、日本のイノベーションの最前線で活躍するクラウドファンディングプラットフォームの先駆者です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「生まれるべきものが生まれ、広がるべきものが広がり、残るべきものが残る世界の実現」——創業者・中山亮太郎氏が掲げるこのビジョンは、今や日本のイノベーションの最前線で、圧倒的なリアリティをもって体現されています。</p><p>2013年にサイバーエージェントの社内ベンチャーとして誕生したマクアケは、クラウドファンディングという枠をはるかに超え、「0次流通」という独自概念を確立した応援購入プラットフォームの先駆者です。累計応援購入総額1,100億円超、プロジェクト数47,000件以上、サポーター数約104万人——その数字が証明するのは、単なる規模の大きさではなく、世の中に新しい価値を生み出し続ける「仕組みの強さ」です。</p><p>東証グロース市場への上場を経た今、マクアケはさらに大きな変革期を迎えています。本業の応援購入サービスにとどまらず、蓄積された膨大なデータを活用した分析SaaS（Makuake Insight）、ヒット商品の継続販売ECサイト（Makuake STORE）、さらにはメーカーの商品企画段階から伴走するMakuake Incubation Studioなど、事業者の「デビュー前・デビュー・デビュー後」を一気通貫で支援するエコシステムを構築中です。</p><p>複数の新規事業を同時並行で育てながら、全体の事業ポートフォリオとして最大の相乗効果を生み出すグランドデザインを描いている——まさに、次のステージへと加速する真っただ中にあります。</p><p>AI関連プロダクトの応援購入総額が前年比3.5倍に急伸するなど、時代の変化をいち早くキャッチし続けるプラットフォームとしての強みも際立っています。また、全国約100社の金融機関との連携や家電量販店との実店舗連動により、オンラインとオフラインの垣根を越えた新たなビジネスモデルも着々と広がっています。</p><p>創業から4度の資金ショートを乗り越えてきた強靭な組織力、サイバーエージェントグループのメディア力とのシナジー、そして本田圭佑氏も「時価総額1兆円規模になる」と評価した成長ポテンシャル。経営直下で、日本のイノベーションを生み出す仕組みそのものをデザインできる環境は、キャリアにとってこれ以上ない財産となるでしょう。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 IR</div>
+          <div class="job-preview">日本のイノベーションを生み出す仕組みをデザインするIRポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>私たちは「生まれるべきものが生まれ 広がるべきものが広がり 残るべきものが残る世界の実現」を目指しております。そのためにはまだまだやりたいこと、やるべきことがたくさんあります。一緒にサービスを加速させてくださる、熱い思いを持った「IR」を募集しております。たくさんの方のワクワクを実現することのできる「Makuake」に興味のある方、是非一緒にお仕事しましょう。</p><p><strong>IRの具体的なお仕事内容</strong></p><ul><li>IR戦略立案</li><li>四半期ごとの決算説明資料の作成、適時開示資料の作成</li><li>自社IRWebサイトおよびSNSのメンテナンス指示</li><li>リリース文書作成</li><li>投資家・アナリスト対応</li><li>決算説明会・投資家説明会等の企画運営</li></ul><p><strong>必須スキル・経験</strong></p><ul><li><span class='tag tag-must'>MUST</span>上場会社におけるIRもしくは経理・経営企画業務経験が３年以上ある方</li><li><span class='tag tag-want'>WANT</span>マネジメント経験がある方歓迎</li></ul><p><strong>こんな人を募集しています</strong></p><ul><li>成長意欲のある方</li><li>チーム全体で目標に向かって突き進みたい方</li><li>とにかくMakuakeが好きな方</li></ul><p><strong>こんなところがお仕事の魅力です</strong></p><ul><li>リーダーとしてご活躍いただく想定で、入社後から裁量を持ってチャレンジいただくことができるポジションです</li><li>新たな業界を切り開くベンチャー企業にて、新しいチャレンジやアイディアに日々ふれることがことができます</li><li>いいアイディアは会社で採用され、実際に運用されます そのため、自身の業務が会社の活動につながるという点を実感できます</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.makuake.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">経営企画・IR責任者</span><span class="badge badge-blue">未上場 N-1</span></div>
+  <div class="co-name">カイテク株式会社</div>
+  <div class="co-url"><a href="https://corp.caitech.co.jp/" target="_blank">https://corp.caitech.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都新宿区新宿1丁目23番1 THE PORTAL 新宿御苑 2F</td></tr><tr><th>上場区分</th><td>未上場 N-1</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>IPO準備フェーズ：N-1期</li><li>社長リレーション</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「2050年に世界一幸せな超高齢社会をつくる」というビジョンのもと、介護・医療領域の人材不足解消に挑む2018年設立のHRテック企業で、介護・医療・看護領域に特化した単発・スポットワークマッチングサービス「カイテク」を展開しています。</p><p>慢性的な人材不足という社会構造課題に対し、有資格者限定という独自モデルでアプローチしている点や勤務後5分以内の即時ペイメントや、足りないシフト枠をスポットワークと連携する仕組みなど、現場起点のプロダクト開発を進め、導入事業所は約2.1万、アプリDLは約118万人まで拡大。</p><p>業界内では圧倒的なシェアNo.1（タイミー社の約4倍）のインフラとして独走状態をキープ、そして直近3期連続黒字、営業利益率10％超と、成長性と収益性を両立している点も特徴でIPOを目指しています。</p><p>今後は介護・医療周辺領域への展開や新規事業、M&Aも視野に入れ、日本で成功モデルを築いた先の海外展開も見据えています。エリア展開も進行中で、介護人材市場の流動化を促進するインフラとしてのポジションを築きつつあります。</p><p>デロイトトーマツグループが2026年1月に発表したテクノロジー・メディア・通信業界における成長率のランキング「Technology Fast 50 2025 Japan」において、過去3決算期の収益（売上高）に基づく成長率1,616％を記録し、見事１位を受賞！</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営企画・IR責任者</div>
+          <div class="job-preview">IPO準備プロジェクトを社長の右腕として牽引し、上場後のIR体制をゼロから構築</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景／仕事内容</strong></p><p>介護・医療分野における事業拡大に伴い、既存事業の延長線上にはない「非連続的な成長」を実現するという大きな変革の真っ只中にいます。私は、この成長を一時的なものに終わらせず、社会の公器として未来永劫価値を創造し続けるため、『株式上場(IPO)』という次なるステージを目指しております。</p><p>しかし、IPOはゴールではありません。私たちのビジョンを資本市場に正しく伝え、未来のパートナー(投資家)を獲得するための『スタートライン』です。</p><p>ビジョン・ミッションに共感いただき、この最も重要で困難なIPOプロジェクトを、社長の右腕として牽引し、上場後のIR体制をゼロから構築してくれる『経営企画・IR責任者』を求めています。</p><p><strong>主な業務内容</strong></p><ul><li>中期経営計画の策定、予実管理体制の構築・高度化</li><li>エクイティストーリーの策定、資本政策の立案(経営陣と共に)</li><li>上場申請書類の作成、内部管理体制・規程の整備</li><li>経営会議の運営、重要アジェンダの管理</li><li>IR体制のゼロからの構築</li></ul><p><strong>上場後</strong></p><ul><li>決算説明会、機関投資家向けミーティング(1on1）、ロードショーの企画・実施</li><li>決算説明会資料、適時開示資料など、IR関連資料の作成統括</li><li>資本市場からのフィードバック収集・分析と経営陣へのレポーティング</li><li>非財務情報開示戦略の立案・実行</li></ul><p><strong>必須スキル・経験</strong></p><ul><li><span class='tag tag-must'>MUST</span>以下、いずれかのご経験<br>・事業会社(特にベンチャー/スタートアップ)における経営企画、財務、経理部門での実務経験(目安3年以上)<br>・証券会社(引受部門)、監査法人、コンサルティングファーム等でのIPO支援、M&A、または関連する実務経験</li><li><span class='tag tag-must'>MUST</span>財務諸表の深い理解(財務三表の連動、主要な財務指標の理解)</li><li><span class='tag tag-must'>MUST</span>監査法人や証券会社と対等に議論・折衝できる高いコミュニケーション能力</li><li><span class='tag tag-must'>MUST</span>PowerPoint、Excelを用いた高い資料作成能力</li></ul><p><strong>歓迎スキル・経験</strong></p><ul><li><span class='tag tag-want'>WANT</span>IPO準備プロジェクトへの参画経験(完遂経験であれば尚可)</li><li><span class='tag tag-want'>WANT</span>上場企業におけるIRまたは経営企画の実務経験</li><li><span class='tag tag-want'>WANT</span>ビジネスレベルの英語力(海外投資家との対話、英文資料作成経験)</li><li><span class='tag tag-want'>WANT</span>証券アナリスト(CMA)、簿記1級/2級、公認会計士(USCPA含む)などの関連資格</li><li><span class='tag tag-want'>WANT</span>M&AやPMI、新規事業立ち上げに関する経営企画・IR・広報経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業 条件によって可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.caitech.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">IR担当</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">INTLOOP株式会社</div>
+  <div class="co-url"><a href="https://www.intloop.com/" target="_blank">https://www.intloop.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都港区赤坂2-4-6 赤坂グリーンクロス27階</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>社長リレーション</li><li>カジュアル面談スタート可</li><li>過去複数名入社実績アリ</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">INTLOOPは「事業創造型コンサルティングファーム」として、2022年7月8日に東証グロース市場に上場し、フリーランス×自社社員のハイブリッド型チームによる経営課題解決の支援を中心に事業展開。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>INTLOOPは「事業創造型コンサルティングファーム」として、2022年7月8日に東証グロース市場に上場し、フリーランス×自社社員のハイブリッド型チームによる経営課題解決の支援を中心に、事業戦略・業務改革コンサルティング、ITコンサルティング、プロジェクトマネジメント支援、プロコンサル派遣・人材紹介、新規事業開発・営業推進支援まで幅広く展開。</p><p>直近10期の年平均成長率（CAGR）は47.2％と非常に好調で、2025年7月期の連結売上高は335億5,100万円、連結社員数は1,508名、フリーランス登録者数は約55,000名。社員とフリーランスのハイブリッド体制を強みに、コンサルティングと人材支援を一体で提供できる点が大きな特徴です。</p><p>2025年にはINTLOOP Project Management株式会社を立ち上げ、PMO事業本部を独立・子会社化。PM人材不足支援、PMO実行支援、先端技術の導入・活用支援を通じて、企業の変革推進を担っています。</p><p>グループ全体で2030年7月期に売上高1,000億円・営業利益150億円を目指す成長ビジョンを掲げており、創業20年を迎えた2025年2月、同社は東京本社を赤坂グリーンクロス27階の最上階に移転し、まさに成長の証として新たなステージへと歩みを進めています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 【東京/リモート可】IR担当</div>
+          <div class="job-preview">IR戦略を立案・推進し、企業価値向上に貢献するIRスペシャリスト</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集概要</strong></p><p>今回の募集ポジションはIR担当としてIR戦略を立案・推進し、アナリスト及び機関投資家対応、プレゼンテーション資料の作りこみ等、弊社グループの企業価値向上に貢献頂ける方を求めています。投資家とのリレーション構築に留まらず、国内の機関投資家へのアプローチをミッションに、適切な情報提供により企業価値を適正な水準に維持向上をさせる。</p><p><strong>IR担当のミッション</strong></p><ul><li>資本市場との適時適切なコミュニケーション及び情報開示を通じて、適正な株価水準の実現に貢献すること。</li><li>コミュニケーション等から得られる市場動向、当社に対する意見・期待などをマネジメントを含む社内にフィードバックし、経営に反映することを通じて企業価値の向上に貢献すること。</li></ul><p><strong>業務概要</strong></p><ul><li>IR戦略の企画、立案</li><li>適時開示およびリリース対応（各種開示資料作成等）</li><li>東京証券取引所、財務局対応</li><li>決算説明会対応（企画運営、資料作成）</li><li>投資家（機関、個人）、アナリスト対応</li><li>株主対応（株主総会、株主報告書ほか）</li><li>メディア対応（取材対応、リリースほか）</li><li>コーポレートガバナンス報告書対応</li><li>IR関連イベント（見学会、海外IR等）およびIRサイトの企画、運営　等</li></ul><p><strong>必須条件</strong></p><ul><li><span class='tag tag-must'>MUST</span>上場会社でのIR業務や経営企画に関する業務経験者</li><li><span class='tag tag-must'>MUST</span>財務諸表・会計の基本的な理解がある方</li><li><span class='tag tag-must'>MUST</span>プレゼン資料作成スキル（Excel、PPT）</li></ul><p><strong>企業魅力</strong></p><p>当社は「ITコンサルティング企業」としての認知が広がっていますが、私たちは2015年以降、第二創業期に突入し、より多角的な事業展開を行う企業へと変貌を遂げました。2022年7月には新規上場を果たし、売上規模は100億円を達成。これにより、コンサル業界においてTop10の地位を確立し、コンサルティング事業と自社事業の両輪による好循環を生み出しています。そして、2024年からは「第三創業期」に突入。次の目標として、売上1000億円を掲げ、日系コンサルファームの中で3番目に1000億円到達する企業を目指しています。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.intloop.com/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k4"><div class="card-inner">
+  <div class="badges"><span class="badge">経営企画・IR担当（課長候補）</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">ビジネスコーチ株式会社</div>
+  <div class="co-url"><a href="https://www.businesscoach.co.jp/" target="_blank">https://www.businesscoach.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都港区西新橋1丁目7番14号 京阪神 虎ノ門ビル 12階</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「あなたに、一人の、ビジネスコーチ」をコーポレートスローガンに、大企業を中心に、経営層やミドルマネジメント層を対象とした人材開発・組織開発支援を行う会社です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「あなたに、一人の、ビジネスコーチ」をコーポレートスローガンに、大企業を中心に、経営層やミドルマネジメント層を対象とした人材開発・組織開発支援を行う会社です。</p><p>米国のビジネスコーチング手法を参考にして2005年に設立され、2006年にビジネスコーチスクールを開始。2009年には役員向けエグゼクティブコーチングもスタートして、BtoBビジネスを事業の中核化へ。2022年10月には東証グロース市場に上場しています。</p><p>「エグゼクティブコーチング」「1on1ミーティング」など、様々なビジネス環境の変化に対応し、フォローアップを重視したクライアントの成果発揮に資するサービスを展開しています。</p><p>パートナーコーチは132名（2022年9月末）。過半は従業員規模1,000人超の企業出身で、1/3以上が経営者、役員、部長クラスのバックグラウンドを持ち、人と組織の生産性向上について豊富な実践経験を有する人材が中心となっています。</p><p>企業の「個」を重視した育成施策の拡大や、顧客の人材及び組織課題の把握ニーズが高まる中売り上げを伸ばしています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営企画・IR担当（課長候補）</div>
+          <div class="job-preview">グループ全体の予算管理・IR戦略を担う経営企画・IR部の責任者候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>ビジネスコーチグループにおける経営企画・IR業務をお任せいたします。</p><p><strong>部署のミッション</strong></p><p>部署の役割としては、主にグループ全体の予算作成・予実管理を中心に、全社横断的に見ていただき、グループ全体の数字管理・改善などをお任せいたします。また、企業価値の最大化と主力のコーチングの普及を図るために積極的なIR活動を展開していただきます。</p><p><strong>具体的な業務内容</strong></p><ul><li>グループ全体の予算策定・予算管理</li><li>M&A戦略の立案および推進</li><li>全社横断的プロジェクト、グループ横断的プロジェクトの企画・推進</li><li>IR戦略の立案、実行</li><li>個人投資家および機関投資家とのコミュニケーション</li><li>IR関連資料の作成（決算短信・決算説明資料・適時開示資料）</li></ul><p><strong>本ポジションに期待する役割</strong></p><p>まずは、グループ全体の予算策定・予算管理、IR関連資料の作成をお願いしたいと思っております。ゆくゆくは、経営企画・IR部の責任者として、組織を拡大していただくとともに、グループ全体の企業価値向上に努めていただきたいです。</p><p><strong>組織状況</strong></p><p>現在、経営企画・IR部においては、CFOが兼任しております。CFOと密接にコミュニケーションをとりながら業務を進めていただき、業務を巻き取っていただくことを想定しております。</p><p><strong>必須条件</strong></p><ul><li><span class='tag tag-must'>MUST</span>上場、非上場問わず経営企画における実務経験 2年以上</li><li><span class='tag tag-must'>MUST</span>簿記2級レベル以上の財務会計・管理会計知識</li></ul><p><strong>歓迎条件</strong></p><ul><li><span class='tag tag-want'>WANT</span>IRの経験</li><li><span class='tag tag-want'>WANT</span>適時開示対応経験</li><li><span class='tag tag-want'>WANT</span>M&Aへの関与経験</li></ul><p><strong>本求人の魅力</strong></p><p>成長過程にある上場会社で、経営企画とIRの業務を実践しながら確実に経験値を身に着けることが出来ます。経営陣や事業責任者との距離が近く、経営の意思決定にダイレクトに貢献できることを実感いただけます。また、自ら考えることを期待され、権限移譲やキャリアアップのチャレンジ機会を得ることも多いです。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.businesscoach.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k5"><div class="card-inner">
+  <div class="badges"><span class="badge">経営企画部長（IR）</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">SAAFホールディングス株式会社</div>
+  <div class="co-url"><a href="https://www.saaf-hd.co.jp/" target="_blank">https://www.saaf-hd.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都江東区豊洲三丁目２番２４号 豊洲フォレシア９F</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    人材ビジネス（SES/派遣/紹介）事業統括責任者※統合後は幹部候補
+
+現状子会社で複数人材ビジネス（SES/派遣/紹介）を展開。今後、統合していく計画があり、その統合に向けた経営戦略、事業統括、統合後の幹部としてのトップマネジメントを推進いただくmissionです！
+
+森本が社外取締役をしており、現経営陣は非常に人間性も抜群でお人柄が極めておススメできる環境です。
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">ITコンサルティング、システム開発、システム機器販売、地盤調査改良、地盤保証等を営む15の傘下子会社・グループ会社を束ねるホールディングカンパニーです。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>ITコンサルティング、システム開発、システム機器販売、地盤調査改良、地盤保証等を営む15の傘下子会社・グループ会社を束ねるホールディングカンパニーです。ITコンサルの『ITbook』と地盤調査・地盤改良の『サムシング』が経営統合する形で2018年に設立されました。</p><p>主に行政・民間企業向けのITコンサルタントや建物を建てる前に必要不可欠な地盤調査や地盤改良を中心に手掛けています。地盤に関連する事業を展開している企業は日本では数少なく、その中でも当グループは業界トップクラスの年間3万件の調査・工事実績があります。</p><p>東証グロース上場も果たしており、2018年のホールディングス化以来売上高を伸ばしています。従業員はグループ総勢で2300名を超え、年々その規模を拡大しています。</p><p>2024年９月には、設立５年が経過したことを機に、改めて当社の目指す姿を明確にし、新たな成長のステージとして大幅な組織再編および構造改革に着手。その一環として社名を「SAAFホールディングス」へと変更されました。</p><p>森本が社外取締役をしており、現経営陣は非常に人間性も抜群でお人柄が極めておススメできる環境です。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営企画部長（IR）</div>
+          <div class="job-preview">新体制発足に伴い、IR機能強化を最優先ミッションとする専任体制の構築</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p>2025年6月より新体制が発足し、現在は旧体制からの移行期間にあります。現在は経営管理本部長が複数の機能を兼務していることから、専任体制の強化が求められるフェーズにあります。</p><p>経営企画部には現在3名のメンバーが在籍しており、今後はIR機能の強化が最優先のミッションとして位置付けられています。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.saaf-hd.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k6"><div class="card-inner">
+  <div class="badges"><span class="badge">経営企画（財務IR）</span><span class="badge badge-blue">未上場 N-3</span></div>
+  <div class="co-name">SHE株式会社</div>
+  <div class="co-url"><a href="https://she-inc.co.jp/about" target="_blank">https://she-inc.co.jp/about</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都港区南青山3-7-21南青山3721ビル</td></tr><tr><th>上場区分</th><td>未上場 N-3</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>女性の&quot;自己実現&quot;を支援する社会的意義の高い事業</li><li>累計受講者3万人超、5,000人以上のリアル会員（確かな実績）</li><li>IVSローンチパッド優勝などスタートアップ業界での高評価</li><li>IPO準備中</li><li>美容・金融などキャリア以外の新領域にも展開中</li><li>シリーズCで17.5億円を調達、累計調達額は44億円に到達</li><li>「SHElikes」×「SHEbeauty」×「SHEmoney」による包括的支援</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">女性向けキャリア支援領域で国内最大級の規模を誇る成長企業です。主力のSHElikesは、Webデザインやマーケティングなど50以上の職種スキルを定額で学べるだけでなく、コーチングや仕事機会の提供までを一気通貫で支援する点に独自性があります。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>SHE株式会社は、女性向けキャリア支援領域で国内最大級の規模を誇る成長企業です。主力のSHElikesは、Webデザインやマーケティングなど50以上の職種スキルを定額で学べるだけでなく、コーチングや仕事機会の提供までを一気通貫で支援する点に独自性があります。</p><p>2017年の創業以降、累計会員数は20万人を突破し、2025年2月にはシリーズCで17.5億円を調達、累計調達額は44億円に到達。大手事業会社・著名投資家からの継続支援も受け、社会性と成長性の両面で高い期待を集めています。</p><p>事業拡大フェーズの今、社会課題の解決と事業成長を両立させながら、大きな裁量を持って組織づくりや事業推進に関わることができる環境です。</p><p><strong>代表取締役 福田 恵里氏</strong></p><p>新卒でリクルートに入社し、営業・新規事業開発などを経験後、出産を機にキャリアとライフの両立に課題を感じ、2017年にSHE株式会社を共同創業。自らもSHElikesの受講生であり、ユーザー視点で事業を磨き続けています。多様な働き方や価値観を尊重し、共感型リーダーシップを体現する次世代起業家の一人です。</p><p>森本が社外取締役となっている企業です。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営企画（財務IR）</div>
+          <div class="job-preview">IPOを目指す環境で財務IRを担い、CFOの権限委譲体制を構築</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong></p><p>今後IPOを目指していく中で、CFOが権限委譲できる体制作りや上場を見据えた組織体制強化を図りたいと考えています。手触り感のある環境で財務IRの経営企画を担いたい方、ぜひお話ししましょう！</p><p><strong>仕事の魅力</strong></p><ul><li>精度の高い経営計画・戦略の策定とPDCAを実行が求められる環境であるため、手触り感を持って財務IRを担える</li><li>IPOを目指す環境でコアとなる財務IRを担うことができる</li></ul><p><strong>入社後のミッション、期待していること</strong></p><ul><li>証券会社や機関投資家とのコミュニケーション対応</li><li>IPO準備</li></ul><p><strong>課題、困っていること</strong></p><p>本ポジションの業務をCFOが行なっている状態なので、より上段の経営戦略検討に時間が割けていない</p><p><strong>業務内容</strong></p><ul><li>投資家/ステークホルダー対応</li><li>資本政策立案</li><li>IR戦略立案</li><li>資金調達サポート</li><li>IPO準備業務</li></ul><p><strong>必須スキル</strong></p><ul><li><span class='tag tag-must'>MUST</span>国内外の機関投資家とのコミュニケーション経験</li></ul><p><strong>歓迎スキル</strong></p><ul><li><span class='tag tag-want'>WANT</span>エクイティ/デットファイナンスでの資金調達経験</li><li><span class='tag tag-want'>WANT</span>証券会社でのIPO支援業務に関するご経験</li><li><span class='tag tag-want'>WANT</span>IPO準備会社での経験</li><li><span class='tag tag-want'>WANT</span>上場企業でIR財務経験</li><li><span class='tag tag-want'>WANT</span>ビジネスレベルの英語</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://she-inc.co.jp/about" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k7"><div class="card-inner">
+  <div class="badges"><span class="badge">IR室長候補</span><span class="badge badge-blue">東証プライム</span></div>
+  <div class="co-name">株式会社ブロードリーフ</div>
+  <div class="co-url"><a href="https://www.broadleaf.co.jp/" target="_blank">https://www.broadleaf.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都品川区東品川四丁目13-14 グラスキューブ品川 ８階</td></tr><tr><th>上場区分</th><td>東証プライム</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">自動車整備業や鈑金業、車両販売業、部品商などのカーアフターマーケットを中心に、さまざまな業種・業界向けのITソリューションを提供している企業です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>自動車整備業や鈑金業、車両販売業、部品商などのカーアフターマーケットを中心に、さまざまな業種・業界向けのITソリューションを提供している企業です。独自開発のIT基盤を起点に、SaaSやマーケットプレイスなどの企業向けクラウドサービスを展開しています。</p><p>自動車アフターマーケット事業者向けのITサービス業界では顧客数4万社弱とトップシェアを占め、2005年の創業からわずか8年後の2013年には、早くも当時の東証一部に上場した自動車アフターマーケット業界のリーディングカンパニーです。</p><p>独自開発のIT基盤「Broadleaf Cloud Platform（BCP）」を起点に、業種・業界を超えたパートナー企業との連携によるプラットフォームの活性化に取り組んでいます。拡張性が高いことから、他社製を含むさまざまなシステムやサービスと連携・連動することが可能、新たな付加価値を発揮するサービスを生み出しています。</p><p>営業・サポートネットワーク拠点は全国26カ所、開発拠点は3カ所あります。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 IR室長候補</div>
+          <div class="job-preview">CEO直轄IR室でプライム上場企業のIR業務全般を担う次世代室長候補</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong></p><p>組織体制強化のための募集です。現在IR室長の定年が近付いているため、次世代の室長として、企業成長を長期的に牽引していくいただく方を募集します。</p><p><strong>仕事内容</strong></p><p>CEO直轄組織であるIR室でプライム上場企業でのIR業務全般（東証対応、IRサイト運用を含む）をお任せします。また20代のメンバーの方の教育もお任せします。</p><p><strong>業務内容</strong></p><ul><li>情報収集と社内調整</li><li>開示資料作成と情報発信</li><li>CSR活動</li><li>外部利害関係者への対応</li><li>決算説明会の運営</li><li>株主・投資家の意向の取りまとめ</li></ul><p><strong>将来的に従事する可能性のある仕事内容</strong></p><p>同社業務全般</p><p><strong>所属部署情報</strong></p><p>配属先：IR室（CEO直轄組織）<br>室長1名（男性/57歳）<br>社員１名（25歳）</p><p><strong>必須条件</strong></p><p>以下いずれかの経験</p><ul><li><span class='tag tag-must'>MUST</span>上場事業会社（子会社でも可）でのIR実務経験</li><li><span class='tag tag-must'>MUST</span>証券会社におけるコーポレートアクセス実務経験</li><li><span class='tag tag-must'>MUST</span>投資運用会社におけるアナリストまたはファンドマネージャー実務経験</li><li><span class='tag tag-must'>MUST</span>英語の読み書き</li></ul><p><strong>歓迎要件</strong></p><ul><li><span class='tag tag-want'>WANT</span>ビジネス英語</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏢 基本出社</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.broadleaf.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k8"><div class="card-inner">
+  <div class="badges"><span class="badge">経営企画（ファイナンス・IR・サステナビリティ推進・企業広報）</span><span class="badge badge-blue">東証プライム</span></div>
+  <div class="co-name">株式会社メディアドゥ</div>
+  <div class="co-url"><a href="https://mediado.jp/" target="_blank">https://mediado.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒100-0003 東京都千代田区一ツ橋1-1-1パレスサイドビル 5F・8F</td></tr><tr><th>上場区分</th><td>東証プライム</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2025年に創業30周年を迎えた「書籍の流通ソリューション企業」です。「著作物の健全なる創造サイクルの実現」と「ひとつでも多くのコンテンツを、ひとりでも多くの人へ」というミッション・ビジョンを掲げ、日本の文化発展と豊かな社会づくりに貢献することを目指しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2025年に創業30周年を迎えた「書籍の流通ソリューション企業」です。「著作物の健全なる創造サイクルの実現」と「ひとつでも多くのコンテンツを、ひとりでも多くの人へ」というミッション・ビジョンを掲げ、日本の文化発展と豊かな社会づくりに貢献することを目指しています。</p><p>中核事業は電子書籍流通事業であり、国内最大手の電子書籍取次として、日本の電子書籍市場において揺るぎない地位を築いています。現在、約260万点もの電子書籍コンテンツを取り扱い、2,200社以上の出版社と150以上の電子書店との強固な信頼関係を構築しています。</p><p>近年は日本のコンテンツを世界中に届けることにも注力し、独自開発の多言語翻訳システムMDTS（AIと翻訳家の力を融合）を活用し、マンガだけでなく これまで電子化が遅れていた文字ものや雑誌の海外展開も加速させます。NetGalleyを活用した海外書店への販促も強化しています。</p><p>FLINEマンガとの独占提携を終えた2022-23年度の2期の減収減益から、2024年度は再び増収増益に転じ、2030年2月期には連結売上高1,250億円、営業利益40億円と、過去最高益の更新を目指しています 。M&Aによる非連続な成長も積極的に推進していく方針です。</p><p><strong>代表取締役社長 CEO　藤田 恭嗣氏</strong><br>1973年徳島県生まれ。名城大学在学中に携帯電話販売事業で創業、卒業と同時に法人を設立。音楽配信事業を始め、現在は、電子書籍事業を中心に、国内はもとより世界に流通できるコンテンツ流通プラットフォーム事業を展開。2013 年に東証マザーズ上場、東証1部に市場変更。第19回企業家賞受賞。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 経営企画（ファイナンス・IR・サステナビリティ推進・企業広報）</div>
+          <div class="job-preview">IR領域を中心としながら、ファイナンス・サステナビリティ・企業広報の4領域を横断的にドライブする経営企画職</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong><br>2026年4月で創業30周年を迎えるメディアドゥは、国内最大手の電子書籍流通事業を主軸に成長を重ね、新中期経営計画で「日本のコンテンツやアセットを世界へと届ける」使命を掲げる飛躍期に入りました。持続的な企業価値向上のためには、サステナビリティ戦略の推進も必須です。これらを支えるファイナンス（財務戦略）・IR（Investor Relations）・サステナビリティ推進・企業広報の4領域を管轄する経営企画部は、国内外のステークホルダーやメディアドゥの経営層と向き合い、各領域で創出する価値を高めるべく、組織強化を行います。現在の主力メンバーと共に、IR領域を中心に担いながら、各領域を横断的にドライブできる方を募集します。</p><p><strong>業務内容</strong><br>入社後は、まずIR領域で投資家層の拡大に向けた広範な戦略立案支援・実行に加え、投資家とのコミュニケーションに資する財務データの分析・可視化、決算説明会資料の作成などを担当していただきます。その後、財務戦略の立案やサステナビリティ推進などにも範囲を広げ、最終的には経営企画部が担う4領域（ファイナンス／IR／サステナビリティ／広報）を横断的にカバーできるオールラウンダーな人材へ成長していただくことを期待しています。</p><p><strong>具体的な業務内容</strong></p><ul><li>決算説明会資料の作成・改善<br>　└ 財務数値の分析、投資家フィードバックを踏まえたストーリー設計<br>　└経営戦略の言語化</li><li>財務・IR戦略立案の補佐</li><li>社内データの抽出・集計・ダッシュボード更新</li><li>国内外コンテンツ／出版マーケットデータのリサーチ・分析</li><li>投資家面談内容の分析および改善提案</li><li>制度開示書類の作成<br>　└ 決算短信、有価証券報告書、適時開示など（定量・定性両面）</li><li>任意開示資料の企画・作成</li><li>IRイベントの企画・運営補佐（決算説明会、海外IRなど）</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>財務に関する知識・経験（簿記2級相当以上の財務知識が必要です）</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>プロジェクトマネジメントのご経験</li><li>決算説明会資料や開示書類作成のご経験</li><li>財務戦略、IR戦略立案のご経験</li><li>データ整理／収集／分析のご経験（マーケットデータ、社内財務データ等）</li><li>IRイベント運営のご経験</li><li>ビジネスレベルの英語力</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://mediado.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが滝本渉 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
